@@ -20,3 +20,22 @@ Sample flow of the app would be :
 
 
 I plan to use flutter for the app and firebase for the back-end but since the app can help a lot of people out there I need a lot of help so any kind of help is appreciated.
+
+How can you contribute?
+
+1. If you are a front-end designer : Please help me come up with a wireframe for my app, so far I am coding based on my initial vision but it would be nice to have someone good with front-end and GUI's to revamp the look and feel of the app.
+
+2. If you wanna contribute towards the code of the project :
+    a. Install and setup flutter on your computer by following the instructions on https://flutter.dev/docs/get-started/install
+    b. Once your flutter doctor command passes all initial setup requirements you can clone this repo and open with your favorite code editor - I use Visual Studio Code but you can use anything.
+    c. To run the project on chrome follow the commands given on https://flutter.dev/docs/get-started/codelab-web 
+    
+    Once this is done you can pick up any task in the To-do column of the Project here and start writing the code. 
+    
+    I would recommend posting a note on findcollabs - https://findcollabs.com/project/letsfightcovid-19-dTnPcankx4sJ6PJ7XdnQ as soon as you start working on a task so no one else works on it.
+
+3. If you are proficient/ wanna contribute towards the backend code :
+  My initial choice for backend is firebase but if you have any better ideas I would be open to discussion. We need a backend module in place for data storage and retrieval so if your skills lie on that side you are more than welcome to start working in that area.
+
+Appreciate your help on this and have fun Coding :D :D ...
+
