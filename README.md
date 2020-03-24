@@ -1,4 +1,4 @@
-# letsfightcovid-19
+# ISOS - In stock Out of Stock
 In the wake of the deadly virus COVID-19, panic buying is starting to set in, in most of the cities around the world, its becoming difficult to track commodities and figure which one is still in stock where, so while the medical experts are trying to figure out a medicine for this virus, I thought of helping with my engineering skills. This flutter app which is in-progress will give the following options to users :
 
 1. Create an account and log-in and browse through user comments.
