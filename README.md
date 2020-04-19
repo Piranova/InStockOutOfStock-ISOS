@@ -23,7 +23,14 @@ I plan to use flutter for the app and firebase for the back-end but since the ap
 
 How can you contribute?
 
-1. If you are a front-end designer : Please help me come up with a wireframe for my app, so far I am coding based on my initial vision but it would be nice to have someone good with front-end and GUI's to revamp the look and feel of the app.
+1. If you are a front-end designer : 
+
+***************19th April 2020 Update ***********************************************************************
+https://github.com/Braweria has designed an awesome UI for the MVP - please take a look at https://xd.adobe.com/view/510abb7d-8b1e-4b4a-4189-1425b3d18ea4-273b/ and if you wanna suggest changes please send a pull request with exact detals.
+Thanks a ton to https://github.com/Braweria for all the time and effort into this.
+***************************************************************************************************************
+
+Please help me come up with a wireframe for my app, so far I am coding based on my initial vision but it would be nice to have someone good with front-end and GUI's to revamp the look and feel of the app.
 
 2. If you wanna contribute towards the code of the project :
     a. Install and setup flutter on your computer by following the instructions on https://flutter.dev/docs/get-started/install
