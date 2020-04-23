@@ -23,6 +23,8 @@ I plan to use flutter for the app and firebase for the back-end but since the ap
 
 How can you contribute?
 
+Please join our discord channel at https://discord.gg/yZk4wu to participate in discussion related to the project or connect with other team members.
+
 1. If you are a front-end designer : 
 
 ***************19th April 2020 Update ***********************************************************************
