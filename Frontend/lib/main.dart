@@ -5,7 +5,7 @@ import 'router.dart' as router;
 void main() => runApp(LetsFightCorona());
 
 class LetsFightCorona extends StatelessWidget {
-
+  
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
