@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:letsfightcovid19/custom-widgets/tab-list-view.dart';
+import 'package:InStockOrOutOfStock/custom-widgets/tab-list-view.dart';
 
 class NearYouTab extends StatelessWidget{
   @override

@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:letsfightcovid19/main.dart';
+import 'package:InStockOrOutOfStock/main.dart';
 
 //import 'package:letsfightcovid19/main.dart';
 

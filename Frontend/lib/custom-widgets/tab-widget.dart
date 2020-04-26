@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:letsfightcovid19/custom-widgets/near-you-tab.dart';
-import 'package:letsfightcovid19/custom-widgets/popular-tab.dart';
+import 'package:InStockOrOutOfStock/custom-widgets/near-you-tab.dart';
+import 'package:InStockOrOutOfStock/custom-widgets/popular-tab.dart';
 import 'package:underline_indicator/underline_indicator.dart';
 
 

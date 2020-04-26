@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../router.dart' as router;
-import 'package:letsfightcovid19/util/constants.dart' as Constants;
-import 'package:letsfightcovid19/custom-widgets/tab-widget.dart';
+import 'package:InStockOrOutOfStock/util/constants.dart' as Constants;
+import 'package:InStockOrOutOfStock/custom-widgets/tab-widget.dart';
 
 class HomeView extends StatefulWidget {
   final String isUserLoggedIn;
