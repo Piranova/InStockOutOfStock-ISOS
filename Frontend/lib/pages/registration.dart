@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './custom-widgets/custom-drawer.dart';
-import './custom-widgets/custom-app-bar.dart';
-import './util/constants.dart' as Constants;
-import 'router.dart' as router;
+import '../custom-widgets/custom-drawer.dart';
+import '../custom-widgets/custom-app-bar.dart';
+import '../util/constants.dart' as Constants;
+import '../router.dart' as router;
 
 class RegistrationView extends StatefulWidget {
   @override

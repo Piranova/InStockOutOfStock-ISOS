@@ -1,6 +1,6 @@
 {
-    "name": "letsfightcovid19",
-    "short_name": "letsfightcovid19",
+    "name": "InStockOrOutOfStock",
+    "short_name": "InStockOrOutOfStock",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",

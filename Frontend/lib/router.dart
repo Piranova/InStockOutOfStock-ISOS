@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:InStockOrOutOfStock/pages/home-view.dart';
-import 'login-view.dart';
-import 'registration.dart';
+import './pages/login-view.dart';
+import './pages/registration.dart';
 import './util/constants.dart' as Constants;
 import 'thank-you-view.dart';
-import 'email-confirmation-view.dart';
+import './pages/email-confirmation-view.dart';
 
 const String HOME = Constants.INITIAL_ROUTE;
 const String LOGIN = Constants.LOGIN;
