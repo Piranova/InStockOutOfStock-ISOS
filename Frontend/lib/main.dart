@@ -11,12 +11,21 @@ class LetsFightCorona extends StatelessWidget {
     return  MaterialApp(
       title: 'LetsFightCovid19',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: 
-        Theme.of(context).textTheme.apply(fontFamily: 'Open Sans')),
-        onGenerateRoute: router.generateRoute,
+        textTheme:
+        Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
+//        primaryColor: const Color(0xFF232C4D),
+        scaffoldBackgroundColor: const Color(0xFF85C9FF),
+        fontFamily: 'Montserrat',
+        tabBarTheme: TabBarTheme(
+          labelColor: const Color(0xFF232C4D),
+          unselectedLabelColor: const Color(0xFF232C4D),
+          labelStyle: TextStyle(fontSize: 16.0, fontFamily: 'Montserrat', fontFamilyFallback: ['Georgia']),
+          unselectedLabelStyle: TextStyle(fontSize: 16.0, fontFamily: 'Montserrat', fontFamilyFallback: ['Georgia'])
+        ),
+      ),
+      onGenerateRoute: router.generateRoute,
         initialRoute: '/',
-      );
+    );
   }
 }
 
