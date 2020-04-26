@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './custom-widgets/custom-app-bar.dart';
-import './custom-widgets/custom-drawer.dart';
+import '../custom-widgets/custom-app-bar.dart';
+import '../custom-widgets/custom-drawer.dart';
 
 class ThankYouView extends StatelessWidget {
   final textColour = Color.fromRGBO(133, 201, 255, 1);
