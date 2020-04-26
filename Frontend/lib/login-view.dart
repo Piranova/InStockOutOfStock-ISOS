@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'router.dart' as router;
-import 'constants.dart' as Constants;
+import 'package:letsfightcovid19/util/constants.dart' as Constants;
 
 class LoginView extends StatefulWidget {
   LoginView({Key key}) : super(key: key);

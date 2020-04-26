@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:letsfightcovid19/home-view.dart';
+import 'package:letsfightcovid19/pages/home-view.dart';
 import 'login-view.dart';
-import 'constants.dart' as Constants;
+import 'package:letsfightcovid19/util/constants.dart' as Constants;
 
 const String HOME = Constants.INITIAL_ROUTE;
 const String LOGIN = Constants.LOGIN;
