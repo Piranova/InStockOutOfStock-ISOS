@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../router.dart' as router;
 import 'package:InStockOrOutOfStock/util/constants.dart' as Constants;
 import 'package:InStockOrOutOfStock/custom-widgets/tab-widget.dart';
+import '../custom-widgets/custom-drawer.dart';
+import '../custom-widgets/custom-app-bar.dart';
 
 class HomeView extends StatefulWidget {
   final String isUserLoggedIn;
@@ -18,23 +20,8 @@ class _HomeViewState extends State<HomeView> {
         ? loginStatus = Constants.LOGIN
         : loginStatus = Constants.LOGOUT;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(Constants.HOME),
-        actions: <Widget>[
-          FlatButton(
-            child: Text(loginStatus),
-            onPressed: () {
-              Navigator.pushReplacementNamed(this.context, router.LOGIN);
-            },
-          ),
-          FlatButton(
-            child: Text(Constants.CONTACT_US),
-            onPressed: () {
-              Navigator.pushReplacementNamed(this.context, router.LOGIN);
-            },
-          ),
-        ],
-      ),
+      appBar: CustomAppBar(),
+      endDrawer: CustomDrawer(),
       body: Container(
           padding: EdgeInsets.all(10),
           child: TabWidget()
