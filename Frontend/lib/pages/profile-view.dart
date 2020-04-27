@@ -34,7 +34,6 @@ class _ProfileViewState extends State<ProfileView> {
       padding: EdgeInsets.fromLTRB(10, topPadding, 20, 5),
       child: Container(
         alignment: Alignment.topLeft,
-        //padding: EdgeInsets.only(rig:5),
         child: Text(text,
             style: TextStyle(
                 fontSize: 16,
