@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import '../util/appcolor.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final chosenBackGroundColor = Color.fromRGBO(35, 44, 77, 1);
-  final chosenTextColour = Color.fromRGBO(133, 201, 255, 1);
 
   @override
   Widget build(BuildContext context) {
@@ -10,24 +9,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 10, 15, 0),
       child: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: chosenBackGroundColor,
-          iconTheme: new IconThemeData(color: chosenTextColour),
-
-          title: Container(
-            width: MediaQuery.of(context).size.width * 0.75,
-            height: 23,
-            child: TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-              ),
-            ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        elevation: 0.0,
+        title: Container(
+          padding: EdgeInsets.all(16.0),
+          width: 400,
+          height: 20,
+          decoration: new BoxDecoration(
+            color: AppColor.primaryDarkColor,
+            border: new Border.all(color: AppColor.primaryDarkColor, width: 2.0),
+            borderRadius: new BorderRadius.circular(25.0),
           ),
-          elevation: 0,
+          child: Divider(thickness: 10, color: AppColor.primaryDarkColor),
         ),
+        backgroundColor: AppColor.primaryColor,
+        iconTheme: IconThemeData(
+            opacity: 20,
+            color: AppColor.primaryDarkColor,
+            size: IconTheme.of(context).size),
+      ),
     );
   }
 
