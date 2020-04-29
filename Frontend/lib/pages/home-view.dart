@@ -13,6 +13,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  var scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     var loginStatus;
@@ -22,11 +24,67 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: CustomAppBar(),
       endDrawer: CustomDrawer(),
-      body: Container(
-          padding: EdgeInsets.all(10),
-          child: TabWidget()
-      ),
-    );
+      body: NestedScrollView(
+        physics: ScrollPhysics(parent: PageScrollPhysics()),
+        controller: scrollController,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate(
+                  [
+                    Column(
+//                        margin: EdgeInsets.only(top: 150),
+//                        height: 300, color: Colors.blue,
+                        children: [
+                          Text("Welcome"),
+                          Text("What are you looking for?"),
+                          
+                          Container(
+                            width: 286,
+                            height: 51,
+                            margin: EdgeInsets.all(10.0),
+                            child: TextField(
+                              onTap: () { print("hi");},
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: const BorderRadius.all(const Radius.circular(10.0)),
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.only(left: 260.0),
+                                    child: Icon(Icons.pin_drop, color: Colors.black)
+                                  )
+                                )
+                            ),
+                          ),
+                          Container(
+                            width: 286,
+                            height: 51,
+                            margin: EdgeInsets.all(10.0),
+                            child: TextField(
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: const BorderRadius.all(const Radius.circular(10.0)),
+                                  ),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    prefixIcon: Padding(
+                                        padding: EdgeInsets.only(left: 260.0),
+                                        child: Icon(Icons.zoom_out, color: Colors.black)
+                                    )
+                                )
+                            ),
+                          ),
+                          ],
+                    )
+                  ]),
+            ),
+          ];
+        },
+        body: TabWidget()
+        ),
+      );
   }
 }
 

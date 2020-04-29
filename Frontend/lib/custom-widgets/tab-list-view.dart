@@ -15,6 +15,7 @@ class TabListViewState extends State<TabListView>{
 
   ListView buildList(){
     return ListView.builder(
+      shrinkWrap: true,
         itemCount: prepareData.length,
         itemBuilder: (BuildContext context, int index) {
           return ExpansionPanelList(
@@ -45,10 +46,10 @@ class TabListViewState extends State<TabListView>{
                     )),
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return Container(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.only(left: 50, top:10),
                     child: Text(prepareData[index].header,
                         style:
-                        TextStyle(color: Colors.black38, fontSize: 19)),
+                        TextStyle(color: Color(0xFF232C4D), fontSize: 20, fontFamily: 'Montserrat')),
                   );
                 },
                 isExpanded: prepareData[index].isExpanded,
