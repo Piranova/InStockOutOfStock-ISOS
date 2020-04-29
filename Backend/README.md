@@ -26,4 +26,4 @@ docker-compose up
 }
 ```
 
-* [Postman Collections Link] (https://www.getpostman.com/collections/e5bda7677a968731fa44)
+* [Postman Collections Link](https://www.getpostman.com/collections/e5bda7677a968731fa44)
