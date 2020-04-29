@@ -9,3 +9,4 @@ const REGISTRATION = 'REGISTRATION';
 const THANKYOU = 'THANKYOU'; // Thank you for signing up Page
 const EMAIL_CONFIRMATION = 'EMAIL_CONFIRMATION';
 const PROFILE = 'PROFILE';
+const ABOUT_US = 'ABOUT US';
