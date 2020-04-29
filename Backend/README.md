@@ -9,7 +9,7 @@
 
 
 ## Instructions
-* Once the docker is installed, To boot-up the docker containers, run below commands from Backend folder.
+* Once the docker is installed, To boot-up the docker containers, run below commands from InStockOutOfStock-ISOS folder.
 ```
 # To build docker images:
 docker-compose build
