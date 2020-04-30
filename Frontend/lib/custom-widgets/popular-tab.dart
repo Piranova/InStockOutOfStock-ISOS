@@ -6,6 +6,7 @@ class PopularTab extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
+      height: MediaQuery.of(context).size.height,
       child: TabListView()
     );
   }
