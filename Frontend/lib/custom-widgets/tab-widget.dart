@@ -53,7 +53,7 @@ class TabWidgetState extends State<TabWidget> with SingleTickerProviderStateMixi
     return
       Expanded(
         child: Container(
-            margin: EdgeInsets.only(top: 5.0),
+            margin: EdgeInsets.only(top: 5.0, left: 7.0, right: 7.0),
             height: MediaQuery.of(context).size.height,
             decoration: new BoxDecoration(
               color: const Color(0xFFF5FBFF),
