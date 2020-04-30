@@ -7,6 +7,7 @@ import './util/constants.dart' as Constants;
 import './pages/thank-you-view.dart';
 import './pages/email-confirmation-view.dart';
 import './pages/profile-view.dart';
+import './pages/about-us-view.dart';
 
 const String HOME = Constants.INITIAL_ROUTE;
 const String LOGIN = Constants.LOGIN;
@@ -14,6 +15,8 @@ const String REGISTRATION = Constants.REGISTRATION;
 const String THANKYOU = Constants.THANKYOU;
 const String EMAIL_CONFIRMATION = Constants.EMAIL_CONFIRMATION;
 const String PROFILE = Constants.PROFILE;
+const String ABOUT_US = Constants.ABOUT_US;
+
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   if (routeSettings.arguments != null) {
@@ -41,6 +44,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       break;
     case PROFILE:
       return MaterialPageRoute(builder: (context) => ProfileView());
+      break;
+    case ABOUT_US:
+      return MaterialPageRoute(builder: (context) => AboutUsView());
       break;
     default:
       return MaterialPageRoute(builder: (context) => HomeView());

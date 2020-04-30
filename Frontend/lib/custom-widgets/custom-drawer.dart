@@ -68,7 +68,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         title: GestureDetector(
                           onTap: () {
                             Navigator.pushReplacementNamed(
-                                this.context, router.HOME);
+                                this.context, router.ABOUT_US);
                           },
                           child: new Text(
                             "About Us",
