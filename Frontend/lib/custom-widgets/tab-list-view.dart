@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import '../models/item-model.dart';
 
-class TabListView extends StatefulWidget{
+class TabListView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => TabListViewState();
-
 }
 
-class TabListViewState extends State<TabListView>{
+class TabListViewState extends State<TabListView> {
   @override
   Widget build(BuildContext context) {
     return buildList();
   }
 
-  ListView buildList(){
+  ListView buildList() {
     return ListView.builder(
         itemCount: prepareData.length,
         itemBuilder: (BuildContext context, int index) {
@@ -28,18 +27,18 @@ class TabListViewState extends State<TabListView>{
                       children: <Widget>[
                         Text(
                           'Available At : ${prepareData[index].availableAt.storeName}',
-                          style: TextStyle(
-                              color: Colors.amber[100], fontSize: 18),
+                          style:
+                              TextStyle(color: Colors.amber[100], fontSize: 18),
                         ),
                         Text(
                           'Address : ${prepareData[index].availableAt.streetName}',
-                          style: TextStyle(
-                              color: Colors.amber[100], fontSize: 18),
+                          style:
+                              TextStyle(color: Colors.amber[100], fontSize: 18),
                         ),
                         Text(
                           'Area: ${prepareData[index].availableAt.zipCode}',
-                          style: TextStyle(
-                              color: Colors.amber[100], fontSize: 18),
+                          style:
+                              TextStyle(color: Colors.amber[100], fontSize: 18),
                         )
                       ],
                     )),
@@ -47,8 +46,7 @@ class TabListViewState extends State<TabListView>{
                   return Container(
                     padding: EdgeInsets.all(10),
                     child: Text(prepareData[index].header,
-                        style:
-                        TextStyle(color: Colors.black38, fontSize: 19)),
+                        style: TextStyle(color: Colors.black38, fontSize: 19)),
                   );
                 },
                 isExpanded: prepareData[index].isExpanded,
@@ -56,8 +54,7 @@ class TabListViewState extends State<TabListView>{
             ],
             expansionCallback: (int item, bool status) {
               setState(() {
-                prepareData[index].isExpanded =
-                !prepareData[index].isExpanded;
+                prepareData[index].isExpanded = !prepareData[index].isExpanded;
               });
             },
           );
@@ -67,28 +64,31 @@ class TabListViewState extends State<TabListView>{
   List<ItemModel> prepareData = <ItemModel>[
     ItemModel(
         header: 'Milk',
-        availableAt:
-        AvailableAt(storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
     ItemModel(
         header: 'Toilet Paper',
-        availableAt:
-        AvailableAt(storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
     ItemModel(
         header: 'Cereals',
-        availableAt:
-        AvailableAt(storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
     ItemModel(
         header: 'Water',
-        availableAt:
-        AvailableAt(storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
     ItemModel(
         header: 'Chips',
-        availableAt:
-        AvailableAt(storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
     ItemModel(
         header: 'Bread',
-        availableAt:
-        AvailableAt(storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
+    ItemModel(
+        header: 'Brown Bread',
+        availableAt: AvailableAt(
+            storeName: 'Costco', streetName: 'xyz', zipCode: '123')),
   ];
 }
-
