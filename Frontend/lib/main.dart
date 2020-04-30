@@ -15,6 +15,7 @@ class LetsFightCorona extends StatelessWidget {
         Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
 //        primaryColor: const Color(0xFF232C4D),
         scaffoldBackgroundColor: const Color(0xFF85C9FF),
+
         fontFamily: 'Montserrat',
         cardColor: Color(0xFFF5FBFF),
         tabBarTheme: TabBarTheme(

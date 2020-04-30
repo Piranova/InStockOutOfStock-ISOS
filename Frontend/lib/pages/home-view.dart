@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
 //                        margin: EdgeInsets.only(top: 150),
 //                        height: 300, color: Colors.blue,
                         children: [
-                          Text("Welcome"),
+                          Text("Welcome!", textScaleFactor: 2.0, textAlign: TextAlign.start),
                           Text("What are you looking for?"),
                           
                           Container(
