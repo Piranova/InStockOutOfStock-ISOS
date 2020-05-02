@@ -44,7 +44,7 @@ class _ProfileViewState extends State<ProfileView> {
           padding: EdgeInsets.fromLTRB(30, 30, 20, 5),
           child: Container(
             alignment: Alignment.topLeft,
-            child: Text("Pavan",
+            child: Text("User 1",
                 style: TextStyle(
                     fontSize: 20,
                     color: AppColor.primaryDarkColor,
@@ -56,7 +56,7 @@ class _ProfileViewState extends State<ProfileView> {
           padding: EdgeInsets.fromLTRB(30, 5, 20, 0),
           child: Container(
             alignment: Alignment.topLeft,
-            child: Text("#83, Church Street, Bengaluru",
+            child: Text("#83, abc street, xyz state, pqr country",
                 style: TextStyle(
                     fontSize: 13,
                     color: AppColor.primaryDarkColor,
