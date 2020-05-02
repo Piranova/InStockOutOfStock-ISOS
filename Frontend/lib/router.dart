@@ -1,3 +1,4 @@
+import 'package:InStockOrOutOfStock/pages/profile-edit-view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:InStockOrOutOfStock/pages/home-view.dart';
@@ -6,6 +7,7 @@ import './pages/registration.dart';
 import './util/constants.dart' as Constants;
 import './pages/thank-you-view.dart';
 import './pages/email-confirmation-view.dart';
+import './pages/profile-edit-view.dart';
 import './pages/profile-view.dart';
 import './pages/about-us-view.dart';
 
@@ -14,7 +16,8 @@ const String LOGIN = Constants.LOGIN;
 const String REGISTRATION = Constants.REGISTRATION;
 const String THANKYOU = Constants.THANKYOU;
 const String EMAIL_CONFIRMATION = Constants.EMAIL_CONFIRMATION;
-const String PROFILE = Constants.PROFILE;
+const String PROFILE_VIEW = Constants.PROFILE_VIEW;
+const String PROFILE_EDIT = Constants.PROFILE_EDIT;
 const String ABOUT_US = Constants.ABOUT_US;
 
 
@@ -42,7 +45,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case EMAIL_CONFIRMATION:
       return MaterialPageRoute(builder: (context) => EmailConfirmationView());
       break;
-    case PROFILE:
+    case PROFILE_EDIT:
+      return MaterialPageRoute(builder: (context) => ProfileEditView());
+      break;
+    case PROFILE_VIEW:
       return MaterialPageRoute(builder: (context) => ProfileView());
       break;
     case ABOUT_US:
