@@ -115,7 +115,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: new ListTile(
             title: GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(this.context, router.PROFILE);
+                Navigator.pushReplacementNamed(this.context, router.PROFILE_VIEW);
               },
               child: new Text(
                 "Profile",
