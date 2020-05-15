@@ -1,11 +1,23 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'router.dart' as router;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'util/globals.dart';
+import 'util/constants.dart' as Constants;
 
-void main() => runApp(LetsFightCorona());
+void main() async {
+  await App.init();
+  bool isLogged = (App.localStorage.getBool(Constants.ISLOGGED) ?? false) ;
+  App.localStorage.setBool(Constants.ISLOGGED, isLogged);
+print("isLogged is " + isLogged.toString());
+  runApp(LetsFightCorona(isUserLoggedIn: isLogged));
+}
 
 class LetsFightCorona extends StatelessWidget {
-  
+  final bool isUserLoggedIn;
+  LetsFightCorona({Key key, this.isUserLoggedIn}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
@@ -26,6 +38,21 @@ class LetsFightCorona extends StatelessWidget {
         ),
       ),
       onGenerateRoute: router.generateRoute,
+//      (RouteSettings settings) {
+//        print("comng in generateroute");
+//        router.generateRoute(settings);
+////        if(settings.name == Constants.INITIAL_ROUTE) {
+////          router.generateRoute(
+////              RouteSettings(name: '/', arguments: isUserLoggedIn));
+////        }else{
+////          router.generateRoute(settings);
+////        }
+//        },
+    onGenerateInitialRoutes: (String name){
+        return [
+              router.generateRoute(RouteSettings(name: '/', arguments: isUserLoggedIn))
+        ];
+    },
         initialRoute: '/',
     );
   }
