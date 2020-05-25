@@ -23,14 +23,15 @@ const String ABOUT_US = Constants.ABOUT_US;
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   if (routeSettings.arguments != null) {
-    print("routesetting arguments : " + routeSettings.arguments);
+    print("routesetting arguments : " + routeSettings.arguments.toString());
+    print("routepath: " + routeSettings.name);
   }
 
   switch (routeSettings.name) {
     case HOME:
       return MaterialPageRoute(
           builder: (context) => HomeView(
-                isUserLoggedIn: routeSettings.arguments,
+                isUserLoggedIn: routeSettings.arguments ?? false,
               ));
       break;
     case LOGIN:

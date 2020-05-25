@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../util/appcolor.dart';
 import '../router.dart' as router;
+import '../util/globals.dart';
+import '../util/constants.dart' as Constants;
 
 class CustomDrawer extends StatefulWidget {
   final chosenBackGroundColor = Color.fromRGBO(35, 44, 77, 1);
   final chosenTextColour = Color.fromRGBO(133, 201, 255, 1);
-
-  final String isUserLoggedIn;
-
-  CustomDrawer({Key key, this.isUserLoggedIn}) : super(key: key);
+  bool  isUserLoggedIn = App.localStorage.getBool(Constants.ISLOGGED) ?? false;
 
   @override
   _CustomDrawerState createState() => new _CustomDrawerState();
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+
   @override
   Widget build(BuildContext context) {
-    var loggedIn = widget.isUserLoggedIn != null;
+    var loggedIn = widget.isUserLoggedIn;
     return Container(
         width: MediaQuery.of(context).size.width * 0.5,
         child: Theme(
@@ -80,7 +81,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
                       ),
                     ),
-                    loggedIn ? getNonLoggedInSection() : getLoggedInSection(),
+                    loggedIn ? getLoggedInSection() : getNonLoggedInSection(),
                   ],
                 ),
               ),
@@ -115,7 +116,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: new ListTile(
             title: GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(this.context, router.PROFILE_VIEW);
+                Navigator.pushReplacementNamed(this.context, router.PROFILE_VIEW, arguments: widget.isUserLoggedIn);
               },
               child: new Text(
                 "Profile",
@@ -131,6 +132,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: new ListTile(
             title: GestureDetector(
               onTap: () {
+//                App.localStorage.remove(Constants.ISLOGGED);
+                App.localStorage.clear();
                 Navigator.pushReplacementNamed(this.context, router.HOME);
               },
               child: new Text(

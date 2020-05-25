@@ -3,6 +3,7 @@ import '../custom-widgets/custom-drawer.dart';
 import '../custom-widgets/custom-app-bar.dart';
 import '../util/constants.dart' as Constants;
 import '../router.dart' as router;
+import '../models/user-model.dart';
 
 class RegistrationView extends StatefulWidget {
   @override
@@ -11,6 +12,10 @@ class RegistrationView extends StatefulWidget {
 
 class _RegistrationViewState extends State<RegistrationView> {
   final textColour = Color.fromRGBO(133, 201, 255, 1);
+  String name;
+  String email;
+  String password;
+  String confirm_password;
 
   //Return a padding widget with nested text inside
   Padding createText(text, topPadding) {
@@ -26,10 +31,10 @@ class _RegistrationViewState extends State<RegistrationView> {
   }
 
   //Return the text input field
-  Container createInputField() {
+  Container createInputField(String field) {
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: TextField(
+      child: TextFormField(
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
@@ -37,6 +42,22 @@ class _RegistrationViewState extends State<RegistrationView> {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(12))),
         ),
+        validator: (val) {
+          if (val == null || val.isEmpty) {
+            return "Field is empty";
+          }
+        },
+          onSaved: (val) {
+            if(field == "name"){
+              name = val;
+            }else if(field == "email"){
+              email = val;
+            }else if(field == "password"){
+              password = val;
+            }else if(field == "conpswd"){
+              confirm_password = val;
+            }
+        },
       ),
     );
   }
@@ -44,6 +65,8 @@ class _RegistrationViewState extends State<RegistrationView> {
   // Each InputField needs to have a Padding Widget On Top
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
         backgroundColor: Color.fromRGBO(35, 44, 77, 1),
         appBar: CustomAppBar(),
@@ -63,33 +86,49 @@ class _RegistrationViewState extends State<RegistrationView> {
               ],
             ),
           ),
-          createText("Name", 40.0),
-          createInputField(),
-          createText("E-Mail", 15.0),
-          createInputField(),
-          createText("Password", 15.0),
-          createInputField(),
-          createText("Confirm Password", 15.0),
-          createInputField(),
-          Container(
-              margin: EdgeInsets.fromLTRB(80, 25, 80, 0),
-              // width: 200,
-              child: RaisedButton(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                color: Colors.white,
-                child: Text('Create Account',
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Montserrat',
+          Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                createText("Name", 40.0),
+                createInputField("name"),
+                createText("E-Mail", 15.0),
+                createInputField("email"),
+                createText("Password", 15.0),
+                createInputField("password"),
+                createText("Confirm Password", 15.0),
+                createInputField("conpswd"),
+                Container(
+                    margin: EdgeInsets.fromLTRB(80, 25, 80, 0),
+                    // width: 200,
+                    child: RaisedButton(
+                      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      color: Colors.white,
+                      child: Text('Create Account',
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Montserrat',
+                          )),
+                      onPressed: () async {
+                        if(_formKey.currentState.validate()){
+                          _formKey.currentState.save();
+
+                          var result = await User(context: context).register(this.name, this.email, this.password, this.confirm_password);
+                          if(result != null && result == 'success') {
+                            Navigator.pushReplacementNamed(
+                                this.context, router.THANKYOU);
+                          }
+                        }
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
                     )),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(this.context, router.THANKYOU,
-                      arguments: Constants.THANKYOU);
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-              )),
+              ],
+            )
+          ),
+
+
           Padding(
             padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
             child: Text("Already have an account?",

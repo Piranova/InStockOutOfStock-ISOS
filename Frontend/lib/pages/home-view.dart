@@ -1,24 +1,73 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../router.dart' as router;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:InStockOrOutOfStock/util/constants.dart' as Constants;
 import 'package:InStockOrOutOfStock/custom-widgets/tab-widget.dart';
 import '../custom-widgets/custom-drawer.dart';
 import '../custom-widgets/custom-app-bar.dart';
+import '../models/user-model.dart';
+import '../util/globals.dart';
+import 'dart:async';
+
 
 class HomeView extends StatefulWidget {
-  final String isUserLoggedIn;
+  final bool isUserLoggedIn;
   HomeView({Key key, this.isUserLoggedIn}) : super(key: key);
   _HomeViewState createState() => new _HomeViewState();
+
 }
 
 class _HomeViewState extends State<HomeView> {
   var scrollController = ScrollController();
 
+  String name = '';
+  SharedPreferences prefs;
+
+  @override
+  void initState() {
+
+    setData()
+    .then((value) {
+      print("completed");
+      setState(() {
+        name = prefs.getString('name') ?? '';
+      });
+    });
+  }
+
+  Future<void> setData() async {
+     prefs = App.localStorage;
+     var response;
+    name = prefs.getString('name') ?? '';
+
+    if(prefs.getBool(Constants.ISLOGGED)) {
+      if ((prefs.getString('name') == null || prefs.getString('name').isEmpty) && prefs.getString('email') != null) {
+         response = await http.get(App.url + 'profile?email=' + prefs.getString('email'));
+         print("response is : " + response.statusCode.toString() + " " +
+                response.body.toString());
+         var jsonResponse = json.decode(response.body);
+         if (response.statusCode == 200) {
+          var status = jsonResponse['result'];
+          var user = jsonResponse['user'];
+          prefs.setString('name', user['name']);
+          name = user['name'];
+          prefs.setInt('user_id', user['user_id']);
+        }
+
+        return true;
+      }
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     var loginStatus;
-    (widget.isUserLoggedIn == null)
+
+    (widget.isUserLoggedIn == true)
         ? loginStatus = Constants.LOGIN
         : loginStatus = Constants.LOGOUT;
     return Scaffold(
@@ -36,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
 //                        margin: EdgeInsets.only(top: 150),
 //                        height: 300, color: Colors.blue,
                         children: [
-                          Text("Welcome!", textScaleFactor: 2.0, textAlign: TextAlign.start),
+                          Text("Welcome " + name  + "!", textScaleFactor: 2.0, textAlign: TextAlign.start),
                           Text("What are you looking for?"),
                           
                           Container(
