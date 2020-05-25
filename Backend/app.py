@@ -14,15 +14,13 @@ from werkzeug.utils import secure_filename
 from functools import wraps
 import uuid
 
-UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-dpp_url = "https://isos-backend.s3.us-east-2.amazonaws.com/images/users/dpp.jpg"
+DPP="{}images/users/dpp.jpg".format(config.S3_PP_URL)
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY']=config.APP_SECRET
     #app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     CORS(app)
 
     @app.errorhandler(404)
@@ -30,7 +28,7 @@ def create_app():
         #wlogger.info("Resource not found while processing the request : {}".format(str(e)))
         return jsonify(message="Server could not find the resource to process the request", result=API_FAILED_RESULT)
 
-    @app.errorhandler(Exception)
+    #@app.errorhandler(Exception)
     def all_exception_handler(error):
         #wlogger.info("Error occured while processing the request : {}".format(str(error)))
         return jsonify(message="Server failed to process the request {}".format(error), result=API_FAILED_RESULT)
@@ -47,10 +45,8 @@ def create_app():
           token = None
           current_user = None
 
-          if 'x-access-tokens' in request.headers:
-             token = request.headers['x-access-tokens']
-
-          print(token)
+          if 'x-access-token' in request.headers:
+             token = request.headers['x-access-token']
 
           if not token:
              return jsonify({'message': 'a valid token is missing'}), 403
@@ -78,31 +74,35 @@ def create_app():
     @token_required
     def profile(current_user):
 
+        public_id = current_user.public_id
+
         if request.method == "PATCH":
-            user_id = current_user.public_id
+
             if 'file' not in request.files:
                 return jsonify(message=FIELD_MISSING.format("Profile Pic"), result="failed"), 400
 
             file = request.files['file']
+            content_type = request.mimetype
             if file.filename == '':
                 return jsonify(message=FIELD_MISSING.format("Profile Pic"), result="failed"), 400
 
             ext =file.filename.rsplit('.', 1)[1].lower()
-            filename = "{public_id}.{ext}".format(public_id=current_user.public_id,ext=ext)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filename = "{public_id}.{ext}".format(public_id=public_id,ext=ext)
+            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            """
-            conn = S3Connection(config.S3_KEY, config.S3_SECRET)
-            bucket = conn.get_bucket(config.S3_BUCKET_NAME)
-            k = Key(bucket)
-            k.key = 'images/users/{user_id}.jpg'.format(user_id=user_id)
-            k.set_contents_from_string(data_file.read())
-            """
-            db_model.Users.objects(email=current_user.email).update(profile_pic=app.config['UPLOAD_FOLDER']+filename)
-            return jsonify(message=PROFILE_UPDATE_SUCCESS, result=API_SUCCESS_RESULT), 200
+            try:
+                s3 = boto3.client("s3", aws_access_key_id=config.S3_KEY, aws_secret_access_key=config.S3_SECRET)
+                key = 'images/users/{user_id}.jpg'.format(user_id=public_id)
+                profile_pic = config.S3_PP_URL + key
+                resp = s3.upload_fileobj(Bucket = config.S3_BUCKET_NAME, Fileobj=file, Key=key, ExtraArgs={'ACL':'public-read'})
+                db_model.Users.objects(email=current_user.email).update(profile_pic=profile_pic)
+                return jsonify(message=PROFILE_UPDATE_SUCCESS, profile_pic=profile_pic, result=API_SUCCESS_RESULT), 200
+            except Exception as e:
+                print(e)
+                return jsonify(message=PROFILE_UPDATE_FAILED, result=API_SUCCESS_RESULT), 200
 
         elif request.method == "GET":
-            email = current_user.email#request.args.get('email')
+            email = current_user.email
             if not validate_input(email):
                 return jsonify(message=FIELD_MISSING.format("Email"), result="failed"), 400
             elif not validate_email(email):
@@ -117,7 +117,7 @@ def create_app():
 
         elif request.method == "PUT":
             try:
-                email = request.form.get('email')
+                email = current_user.email
                 if not validate_input(email):
                     return jsonify(message=FIELD_MISSING.format("Email"), result="failed"), 400
                 elif not validate_email(email):
@@ -376,7 +376,7 @@ def create_app():
             return jsonify(message=EMAIl_EXIST.format(email), result=API_SUCCESS_RESULT), 400
 
         try:
-            db_model.Users(profile_pic=dpp_url, name=name, email=email, password=hash_input(password), public_id=public_id).save()
+            db_model.Users(profile_pic=DPP, name=name, email=email, password=hash_input(password), public_id=public_id).save()
             return jsonify(result=API_SUCCESS_RESULT, title=REG_SUCCESS_TITLE, message=REG_SUCCESS_MESSAGE.format(email)), 200
         except Exception as e:
             print("Error saving email {}, got error: {}".format(email, str(e)))
@@ -389,4 +389,4 @@ if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['PROPAGATE_EXCEPTIONS'] = True
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5001)

@@ -28,6 +28,7 @@ services:
     - S3_KEY=${S3_KEY}
     - S3_SECRET=${S3_SECRET}
     - APP_SECRET=${APP_SECRET}
+    - S3_PP_URL=${S3_PP_URL}
     container_name: backend
     ports:
       - 5000:5000
