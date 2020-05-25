@@ -20,7 +20,7 @@ dpp_url = "https://isos-backend.s3.us-east-2.amazonaws.com/images/users/dpp.jpg"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY']='Th1s1ss3cr3t'
+    app.config['SECRET_KEY']=config.APP_SECRET
     #app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     CORS(app)
