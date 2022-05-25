@@ -4,5 +4,5 @@ pymongo==3.10.1
 gunicorn==20.0.4
 gevent==1.4.0
 mongoengine==0.19.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 boto3==1.13.16
